@@ -1,14 +1,30 @@
 plugins {
     id 'java'
+    id "java-library"
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
+
+ext {
+    javaMainClass = "io.flowsquad.blog.devops.github.packages.main.MainClass"
+}
+
+application {
+    mainClassName = javaMainClass
+}
 sourceCompatibility = JavaVersion.VERSION_11
 
 group 'io.flowsquad.blog'
 version '1.0.1'
 
+def distFolder = '../dist'
+
 repositories {
     mavenCentral()
+    flatDir {
+        dirs "${distFolder}"
+    }
     maven {
         // Der Name kann beliebig gewählt werden
         // Choose whatever name you like
@@ -28,5 +44,5 @@ repositories {
 dependencies {
     // Die Referenz auf das veröffentlichte Library-Artefakt
     // The reference to our published library artifact
-    compile "io.flowsquad.blog:devops-github-actions-library:1.0.1"
+    compileOnly "devops-github-packages:devops-github-packages-1.0.1"
 }
