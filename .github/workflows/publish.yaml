@@ -20,7 +20,7 @@ jobs:
       - name: Build JAR # Used to execute gradle commands
         run: >
           gradle \
-            -Pgpr.key=${{ secrets.GITHUB_TOKEN }} \
+            -Pgpr.key=${{ secrets.GPR_TOKEN }} \
             -Pgpr.user=$GITHUB_ACTOR \
             :devops-github-packages-library:build \
             :devops-github-packages-library:publish
